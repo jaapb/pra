@@ -1,0 +1,5 @@
+src/pra_plugin.ml4
+src/pra_plugin.mllib
+theories/pra.v
+-R theories pra
+-I src
