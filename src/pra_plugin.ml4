@@ -24,13 +24,13 @@ let constant dir s =
 	Coqlib.gen_constant "QuoteTerm" dir s	
 
 let my_constant s =
-	let dir = make_dirpath (List.map id_of_string (List.rev ["pra"]))
+	let dir = make_dirpath (List.map id_of_string (List.rev ["pra"; "pra"]))
 	and id = id_of_string s in
 	let sp = Libnames.make_path dir id in
 	try
 		Universes.constr_of_reference (Nametab.absolute_reference sp)
 	with Not_found ->
-		Errors.errorlabstrm "QuoteTerm" Pp.(str "cannot find" ++ Libnames.pr_path sp)
+		Errors.errorlabstrm "QuoteTerm" Pp.(str "cannot find " ++ Libnames.pr_path sp)
 
 let rec quoteterm t: Term.constr =
 	let coq_nat = constant ["Init";"Datatypes"] "nat"
@@ -289,5 +289,5 @@ let quotegoal: unit Proofview.tactic =
 ;;
 
 TACTIC EXTEND QuoteGoal
-| [ "QuoteGoal" ] -> [ quotegoal ]
+| [ "quotegoal" ] -> [ quotegoal ]
 END

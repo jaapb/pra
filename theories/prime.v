@@ -1,4 +1,4 @@
-Require Import QuoteTerm.
+Require Import pra.QuoteTerm.
 
 (* Primality of natural numbers *)
 Definition divides (n m : nat) : Prop := exists k : nat, k <= m /\ k * n = m.
@@ -6,7 +6,7 @@ Definition divides (n m : nat) : Prop := exists k : nat, k <= m /\ k * n = m.
 Definition prime (n : nat) : Prop :=
   n > 1 /\ (forall d : nat, d <= n -> divides d n -> (d = 1 \/ d = n)).
 
-(* Theorem prime_test: prime 61.
+Theorem prime_test: prime 61.
 Proof.
   unfold prime. unfold divides. Time PRA.
 Qed.
